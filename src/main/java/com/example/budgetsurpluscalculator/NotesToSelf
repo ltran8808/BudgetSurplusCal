@@ -1,2 +1,6 @@
 Nov 10, 2025
 Textfield continues showing default value when onValueChange is called. This seems to be because of the source of truth, for example budgetSurplusCalUiState.monthlyIncome. BudgetSurplusCalUiState has monthlyIncome with 0.0 by default.
+Nov 12, 2025
+Starter code was done.
+I uploaded the starter code into Github, https://github.com/ltran8808/BudgetSurplusCal.
+Next step is to write code for ExpenseInputScreen in ExpenseInputScreen.kt.
