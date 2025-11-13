@@ -1,0 +1,5 @@
+package com.example.budgetsurpluscalculator
+
+/*
+THIS IS WHERE THE SCREENS ARE DISPLAYED WITH NAVIGATION (HOST, CONTROLLER AND ROUTE)
+ */
