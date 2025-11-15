@@ -1,5 +1,7 @@
 package com.example.budgetsurpluscalculator.ui.theme.screens
 
+import androidx.collection.MutableDoubleList
+import androidx.collection.mutableDoubleListOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -24,11 +26,18 @@ class BudgetSurplusCalViewModel : ViewModel(){
     var monthlyIncome by mutableStateOf("")
         private set
 
-    var monthlyNumberOfBills by mutableStateOf("")
+    var monthlyNumberOfBills by mutableStateOf("5")
         private set
 
     var monthlySavingGoal by mutableStateOf("")
         private set
+
+    val _monthlyNumberOfBills : Double = monthlyNumberOfBills.toDouble()
+
+    var expenseInputList: MutableList<String> = mutableListOf()
+        private set
+
+    var index: Int = 0
 
     fun updateMonthlyIncome(input:String){
         monthlyIncome = input
@@ -42,6 +51,17 @@ class BudgetSurplusCalViewModel : ViewModel(){
         monthlySavingGoal = input
     }
 
+    fun createExpenseInputList(){
+        while (index < _monthlyNumberOfBills){
+            expenseInputList.add("0.0")
+            index
+        }
+    }
+
+    fun updateExpenseInput(index:Int,input:String){
+        expenseInputList[index] = input
+    }
+
 
     fun reset(){
         monthlyIncome = ""
@@ -49,8 +69,12 @@ class BudgetSurplusCalViewModel : ViewModel(){
         monthlyNumberOfBills = ""
     }
 
+    /*When the below function is called,ExpenseInputScreen composable function must be called and
+    hosted in NavHost. Then, an list must be created in order to keep the expenses that users are going to enter
+    in the ExpenseInputScreen.
+         */
     fun submit(){
-
+        createExpenseInputList()
     }
 
 }

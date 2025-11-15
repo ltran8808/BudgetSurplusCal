@@ -4,3 +4,6 @@ Nov 12, 2025
 Starter code was done.
 I uploaded the starter code into Github, https://github.com/ltran8808/BudgetSurplusCal.
 Next step is to write code for ExpenseInputScreen in ExpenseInputScreen.kt.
+Nov 15, 2025
+Created composables for expense inputs
+Next step is to find a solution to update elements of BudgetSurplusCalViewModel's expenseInputList.

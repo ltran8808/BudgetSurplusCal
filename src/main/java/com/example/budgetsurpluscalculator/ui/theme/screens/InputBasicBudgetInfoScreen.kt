@@ -35,10 +35,6 @@ fun InputBasicBudgetInfoScreen(
     val budgetSurplusCalUiState by viewModel.budgetSurplusCalUiState.collectAsState()
 
 
-
-
-
-
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.Center,
@@ -114,9 +110,7 @@ fun InputBasicBudgetInfoScreen(
 
 @Preview
 @Composable
-fun InputBasicBudgetInfoPreview(
-
-){
+fun InputBasicBudgetInfoPreview(){
 
         InputBasicBudgetInfoScreen(
             modifier = Modifier
