@@ -54,7 +54,7 @@ class BudgetSurplusCalViewModel : ViewModel(){
     fun createExpenseInputList(){
         while (index < _monthlyNumberOfBills){
             expenseInputList.add("0.0")
-            index
+            index++
         }
     }
 

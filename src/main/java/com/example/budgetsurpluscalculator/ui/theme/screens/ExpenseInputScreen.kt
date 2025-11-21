@@ -40,8 +40,8 @@ fun ExpenseInputScreen(
 
             while (index < numberOfBills){
                 ExpenseInputLayout(
-                    viewModel.expenseInputList[index],
-                    onExpenseInputChanged = viewModel.updateExpenseInput(index,newInput))
+                    "0.0",
+                    onExpenseInputChanged = {})
                 index++
             }
 
