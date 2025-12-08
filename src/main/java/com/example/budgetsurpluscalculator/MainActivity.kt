@@ -20,9 +20,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             BudgetSurplusCalculatorTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    BudgetSurplusCalculator()
-                }
+                BudgetSurplusCalculatorApp()
             }
         }
     }
@@ -30,17 +28,5 @@ class MainActivity : ComponentActivity() {
 
 
 
-@Composable
-fun BudgetSurplusCalculator(
-    modifier: Modifier = Modifier
-) {
 
-}
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    BudgetSurplusCalculatorTheme {
-
-    }
-}

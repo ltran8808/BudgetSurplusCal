@@ -8,10 +8,12 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
@@ -33,19 +35,7 @@ enum class BudgetSurplusCalculatorScreens(){
     ExpenseInput
 }
 
-//@Composable
-//fun BudgetSurplusCalculatorAppBar(
-//    currentScreen: BudgetSurplusCalculatorScreens,
-//    canNavigateBack: Boolean,
-//    navigateUp: () -> Unit,
-//    modifier: Modifier = Modifier
-//){
-//    TopAppBar(
-//        title = {
-//            Text(stringResource(currentScreen))
-//        }
-//    )
-//}
+
 
 
 @Composable
@@ -54,24 +44,14 @@ fun BudgetSurplusCalculatorApp(
     navController: NavHostController = rememberNavController()
 ){
 
-    // Get current back stack entry
-    val backStackEntry by navController.currentBackStackEntryAsState()
-
-    // Get the name of the current screen
-    val currentScreen = BudgetSurplusCalculatorScreens.valueOf(
-        backStackEntry?.destination?.route ?: BudgetSurplusCalculatorScreens.Start.name
-    )
 
     Scaffold(
         topBar = {
-//            BudgetSurplusCalculatorAppBar(
-//                currentScreen = currentScreen,
-//                canNavigateBack = navController.previousBackStackEntry != null,
-//                navigateUp = {navController.navigateUp()}
-//            )
 
         }
     ) { innerPadding ->
+
+        val uiState by viewModel.budgetSurplusCalUiState.collectAsState()
 
 
       NavHost(
@@ -83,11 +63,14 @@ fun BudgetSurplusCalculatorApp(
                 .padding(innerPadding)
         ){
             composable(route = BudgetSurplusCalculatorScreens.Start.name){
-                InputBasicBudgetInfoScreen()
+                InputBasicBudgetInfoScreen(
+                    onSubmitButtonClicked = {navController.navigate(BudgetSurplusCalculatorScreens.ExpenseInput.name)},
+                )
             }
 
           composable(route = BudgetSurplusCalculatorScreens.ExpenseInput.name){
-              ExpenseInputScreen()
+              ExpenseInputScreen(
+              )
           }
         }
 

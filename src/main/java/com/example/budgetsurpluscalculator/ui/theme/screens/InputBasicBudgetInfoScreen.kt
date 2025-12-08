@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.paddingFrom
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
@@ -29,11 +30,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun InputBasicBudgetInfoScreen(
+    onSubmitButtonClicked : () -> Unit,
     modifier: Modifier = Modifier,
     viewModel : BudgetSurplusCalViewModel = viewModel()
 ){
-    val budgetSurplusCalUiState by viewModel.budgetSurplusCalUiState.collectAsState()
-
 
     Column(
         modifier = modifier,
@@ -47,7 +47,7 @@ fun InputBasicBudgetInfoScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ){
             TextField(
-                value = viewModel.monthlyIncome,
+                value = viewModel.monthlyIncome ,
                 onValueChange = {viewModel.updateMonthlyIncome(it)},
                 label = {Text(
                     "Please enter your monthly income.",
@@ -99,7 +99,7 @@ fun InputBasicBudgetInfoScreen(
             Spacer(modifier = Modifier
                 .padding(16.dp))
 
-            Button(onClick = {viewModel.submit()}) {
+            Button(onClick = onSubmitButtonClicked) {
                 Text("Submit")
             }
 
@@ -115,7 +115,8 @@ fun InputBasicBudgetInfoPreview(){
         InputBasicBudgetInfoScreen(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp)
+                .padding(16.dp),
+            onSubmitButtonClicked = {}
         )
 
 }
