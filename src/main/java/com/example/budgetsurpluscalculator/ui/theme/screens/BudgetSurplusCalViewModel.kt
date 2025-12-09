@@ -14,9 +14,9 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 data class BudgetSurplusCalUiState(
-    var monthlyIncome: String = "0.0",
-    var monthlySavingGoal: String = "0.0",
-    var monthlyNumberOfBills: String = "0"
+    val monthlyIncome: String = "0.0",
+    val savingGoal: String = "0.0",
+    val monthlyNumberOfBills: String = "0"
 )
 
 
@@ -26,39 +26,37 @@ class BudgetSurplusCalViewModel : ViewModel(){
 
 
     private val _budgetSurplusCalUiState = MutableStateFlow(BudgetSurplusCalUiState())
-    val budgetSurplusCalUiState: StateFlow<BudgetSurplusCalUiState> = _budgetSurplusCalUiState.asStateFlow()
+    val budgetSurplusCalUiState: StateFlow<BudgetSurplusCalUiState> = _budgetSurplusCalUiState
 
 
-    var monthlyIncome by mutableStateOf(_budgetSurplusCalUiState.value.monthlyIncome)
-        private set
+//    val monthlyIncome by mutableStateOf(_budgetSurplusCalUiState.value.monthlyIncome)
+//        private set
+//
+//    val monthlySavingGoal by mutableStateOf(_budgetSurplusCalUiState.value.monthlySavingGoal)
+//        private set
+//
+//    val monthlyNumberOfBills by mutableStateOf(_budgetSurplusCalUiState.value.monthlyNumberOfBills)
+//        private set
 
-    var monthlySavingGoal by mutableStateOf(_budgetSurplusCalUiState.value.monthlySavingGoal)
-        private set
+//    val _monthlyNumberOfBills : Int = monthlyNumberOfBills.toInt()
 
-    var monthlyNumberOfBills by mutableStateOf(_budgetSurplusCalUiState.value.monthlyNumberOfBills)
-        private set
-
-
-
-    val _monthlyNumberOfBills : Int = monthlyNumberOfBills.toInt()
-
-    var expenseInputList: MutableList<String> = mutableListOf()
-        private set
+//    val expenseInputList: MutableList<String> = mutableListOf()
+//        private set
 
     var index: Int = 0
 
     fun updateMonthlyIncome(input:String){
-        monthlyIncome = input
-        _budgetSurplusCalUiState.value.monthlyIncome = input
+//        monthlyIncome = input
+        _budgetSurplusCalUiState.value = _budgetSurplusCalUiState.value.copy(monthlyIncome = input)
     }
 
-    fun updateMonthlySavingGoal(input:String) {
-        monthlySavingGoal = input
-        _budgetSurplusCalUiState.value.monthlySavingGoal = input
+    fun updateSavingGoal(input:String) {
+//        monthlySavingGoal = input
+        _budgetSurplusCalUiState.value = _budgetSurplusCalUiState.value.copy(savingGoal = input )
     }
 
     fun updateMonthlyNumberOfBills(input:String){
-        monthlyNumberOfBills = input
+//        monthlyNumberOfBills = input
 //        _budgetSurplusCalUiState.value.monthlyNumberOfBills = input
 
         _budgetSurplusCalUiState.value = _budgetSurplusCalUiState.value.copy(
@@ -70,16 +68,16 @@ class BudgetSurplusCalViewModel : ViewModel(){
 
 
 
-    fun createExpenseInputList(){
-        while (index < _monthlyNumberOfBills){
-            expenseInputList.add("0.0")
-            index++
-        }
-    }
-
-    fun updateExpenseInput(index:Int,input:String){
-        expenseInputList[index] = input
-    }
+//    fun createExpenseInputList(){
+//        while (index < budgetSurplusCalUiState.value.monthlyNumberOfBills.toInt()){
+//            expenseInputList.add("0.0")
+//            index++
+//        }
+//    }
+//
+//    fun updateExpenseInput(index:Int,input:String){
+//        expenseInputList[index] = input
+//    }
 
 
     fun reset(){
@@ -91,7 +89,7 @@ class BudgetSurplusCalViewModel : ViewModel(){
     in the ExpenseInputScreen.
          */
     fun submit(){
-        createExpenseInputList()
+//        createExpenseInputList()
     }
 
 }

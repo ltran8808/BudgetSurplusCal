@@ -26,12 +26,12 @@ import kotlin.math.log
 
 @Composable
 fun ExpenseInputScreen(
-
     modifier: Modifier = Modifier,
     viewModel: BudgetSurplusCalViewModel = viewModel()
 ){
 
     val expenseInputUiState by viewModel.budgetSurplusCalUiState.collectAsStateWithLifecycle()
+
     val TAG = "ExpenseInputScreen"
     Log.d(TAG, expenseInputUiState.monthlyNumberOfBills)
 
@@ -86,7 +86,6 @@ fun ExpenseInputLayout(
 @Preview
 @Composable
 fun ExpenseInputPreview(){
-    ExpenseInputScreen(
-        numberOfBills = "5"
-    )
+//    ExpenseInputScreen(
+//    )
 }

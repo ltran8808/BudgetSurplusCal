@@ -23,17 +23,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun InputBasicBudgetInfoScreen(
+    onMonthlyNumberOfBillsChanged : (String) -> Unit,
     onSubmitButtonClicked : () -> Unit,
     modifier: Modifier = Modifier,
     viewModel : BudgetSurplusCalViewModel = viewModel()
 ){
+
+    val budgetSurplusCalUiState by viewModel.budgetSurplusCalUiState.collectAsStateWithLifecycle()
 
     Column(
         modifier = modifier,
@@ -47,7 +52,7 @@ fun InputBasicBudgetInfoScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ){
             TextField(
-                value = viewModel.monthlyIncome ,
+                value = budgetSurplusCalUiState.monthlyIncome ,
                 onValueChange = {viewModel.updateMonthlyIncome(it)},
                 label = {Text(
                     "Please enter your monthly income.",
@@ -61,8 +66,8 @@ fun InputBasicBudgetInfoScreen(
                 .padding(16.dp))
 
             TextField(
-                value = viewModel.monthlySavingGoal,
-                onValueChange = {viewModel.updateMonthlySavingGoal(it)},
+                value = budgetSurplusCalUiState.savingGoal,
+                onValueChange = {viewModel.updateSavingGoal(it)},
                 label = {Text(
                     "Please enter your monthly saving goal.",
                     fontSize = 8.sp
@@ -75,8 +80,8 @@ fun InputBasicBudgetInfoScreen(
                 .padding(16.dp))
 
             TextField(
-                value = viewModel.monthlyNumberOfBills,
-                onValueChange = {viewModel.updateMonthlyNumberOfBills(it)},
+                value = budgetSurplusCalUiState.monthlyNumberOfBills,
+                onValueChange = onMonthlyNumberOfBillsChanged,
                 label = {Text(
                     "Please enter your monthly number of bills.",
                     fontSize = 8.sp
@@ -111,12 +116,14 @@ fun InputBasicBudgetInfoScreen(
 @Preview
 @Composable
 fun InputBasicBudgetInfoPreview(){
-
-        InputBasicBudgetInfoScreen(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            onSubmitButtonClicked = {}
-        )
+//    uiState: BudgetSurplusCalUiState = BudgetSurplusCalUiState
+//
+//        InputBasicBudgetInfoScreen(
+//            uiState = uiState,
+//            modifier = Modifier
+//                .fillMaxSize()
+//                .padding(16.dp),
+//            onSubmitButtonClicked = {}
+//        )
 
 }
