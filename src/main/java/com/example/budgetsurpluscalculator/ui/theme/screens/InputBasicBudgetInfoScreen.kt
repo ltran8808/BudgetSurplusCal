@@ -104,7 +104,10 @@ fun InputBasicBudgetInfoScreen(
             Spacer(modifier = Modifier
                 .padding(16.dp))
 
-            Button(onClick = onSubmitButtonClicked) {
+            Button(
+                onClick =
+                    onSubmitButtonClicked
+            ) {
                 Text("Submit")
             }
 

@@ -10,9 +10,13 @@ Next step is to find a solution to update elements of BudgetSurplusCalViewModel'
 Nov 18, 2025
 Next step is to write Navigation code.
 Make sure the ExpenseInputList is intialize in order for ExpenseInputScreen to have a list to use for generating Textfield and expenseInput value
-Nove 21,2025
+Nov 21,2025
 https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3
 https://developer.android.com/guide/navigation
 https://github.com/google-developer-training/basic-android-kotlin-compose-training-cupcake/blob/main/app/src/main/java/com/example/cupcake/CupcakeScreen.kt
 Created NavHost and other Navigation components
 Next step is to update onClick functions to navigate, call functions in BudgetSurplusCalViewMode and pass important arguments.
+Dec 16, 2025
+The code is now generating expense input Textfield per the amount of bills that users enter.
+Next step is to work on making the each expense input textfield individually updates the MustableList expenseInputList.
+Might need to switch to mutablestatelistof

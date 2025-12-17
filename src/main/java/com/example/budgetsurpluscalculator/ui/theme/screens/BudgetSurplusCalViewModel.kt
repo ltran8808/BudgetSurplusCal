@@ -8,15 +8,20 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 data class BudgetSurplusCalUiState(
     val monthlyIncome: String = "0.0",
     val savingGoal: String = "0.0",
-    val monthlyNumberOfBills: String = "0"
+    val monthlyNumberOfBills: String = "0",
+    val expenseInputList : MutableList<Double> = mutableListOf(),
+    val expenseInput : String = "0.0"
 )
 
 
@@ -29,21 +34,10 @@ class BudgetSurplusCalViewModel : ViewModel(){
     val budgetSurplusCalUiState: StateFlow<BudgetSurplusCalUiState> = _budgetSurplusCalUiState
 
 
-//    val monthlyIncome by mutableStateOf(_budgetSurplusCalUiState.value.monthlyIncome)
-//        private set
-//
-//    val monthlySavingGoal by mutableStateOf(_budgetSurplusCalUiState.value.monthlySavingGoal)
-//        private set
-//
-//    val monthlyNumberOfBills by mutableStateOf(_budgetSurplusCalUiState.value.monthlyNumberOfBills)
-//        private set
 
-//    val _monthlyNumberOfBills : Int = monthlyNumberOfBills.toInt()
+    var index : Int = 0
 
-//    val expenseInputList: MutableList<String> = mutableListOf()
-//        private set
 
-    var index: Int = 0
 
     fun updateMonthlyIncome(input:String){
 //        monthlyIncome = input
@@ -63,21 +57,24 @@ class BudgetSurplusCalViewModel : ViewModel(){
             monthlyNumberOfBills = input
         )
 
-        Log.d(TAG,budgetSurplusCalUiState.value.monthlyNumberOfBills)
+        Log.d(TAG,"Monthly number of bills is: " + budgetSurplusCalUiState.value.monthlyNumberOfBills)
     }
 
 
 
-//    fun createExpenseInputList(){
-//        while (index < budgetSurplusCalUiState.value.monthlyNumberOfBills.toInt()){
-//            expenseInputList.add("0.0")
-//            index++
-//        }
-//    }
-//
-//    fun updateExpenseInput(index:Int,input:String){
-//        expenseInputList[index] = input
-//    }
+
+    fun createExpenseList(){
+        _budgetSurplusCalUiState.value = _budgetSurplusCalUiState.value.copy(
+            expenseInputList = MutableList(_budgetSurplusCalUiState.value.monthlyNumberOfBills.toInt()){0.0}
+        )
+        Log.d(TAG, "Expense Input List's size is: " + _budgetSurplusCalUiState.value.expenseInputList.size)
+    }
+
+    fun updateExpenseInput(input : String) {
+        _budgetSurplusCalUiState.value = _budgetSurplusCalUiState.value.copy(
+
+        )
+    }
 
 
     fun reset(){

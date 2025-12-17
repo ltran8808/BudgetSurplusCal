@@ -66,13 +66,15 @@ fun BudgetSurplusCalculatorApp(
                 InputBasicBudgetInfoScreen(
                     viewModel = viewModel,
                     onMonthlyNumberOfBillsChanged = {viewModel.updateMonthlyNumberOfBills(it)},
-                    onSubmitButtonClicked = {navController.navigate(BudgetSurplusCalculatorScreens.ExpenseInput.name)},
+                    onSubmitButtonClicked = {
+                        navController.navigate(BudgetSurplusCalculatorScreens.ExpenseInput.name)
+                                            viewModel.createExpenseList()},
                 )
             }
 
           composable(route = BudgetSurplusCalculatorScreens.ExpenseInput.name){
               ExpenseInputScreen(
-                  viewModel = viewModel
+                  viewModel = viewModel,
               )
           }
         }
