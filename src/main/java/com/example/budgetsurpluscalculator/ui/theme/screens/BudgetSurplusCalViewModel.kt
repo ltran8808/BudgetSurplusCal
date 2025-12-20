@@ -20,7 +20,7 @@ data class BudgetSurplusCalUiState(
     val monthlyIncome: String = "0.0",
     val savingGoal: String = "0.0",
     val monthlyNumberOfBills: String = "0",
-    val expenseInputList : MutableList<Double> = mutableListOf(),
+    val expenseInputList : List<String> = emptyList(),
     val expenseInput : String = "0.0"
 )
 
@@ -35,7 +35,7 @@ class BudgetSurplusCalViewModel : ViewModel(){
 
 
 
-    var index : Int = 0
+
 
 
 
@@ -65,14 +65,23 @@ class BudgetSurplusCalViewModel : ViewModel(){
 
     fun createExpenseList(){
         _budgetSurplusCalUiState.value = _budgetSurplusCalUiState.value.copy(
-            expenseInputList = MutableList(_budgetSurplusCalUiState.value.monthlyNumberOfBills.toInt()){0.0}
+            expenseInputList = MutableList(_budgetSurplusCalUiState.value.monthlyNumberOfBills.toInt()){_budgetSurplusCalUiState.value.expenseInput}
         )
         Log.d(TAG, "Expense Input List's size is: " + _budgetSurplusCalUiState.value.expenseInputList.size)
     }
 
-    fun updateExpenseInput(input : String) {
-        _budgetSurplusCalUiState.value = _budgetSurplusCalUiState.value.copy(
+    fun updateExpenseInputList( input : String) {
+        _budgetSurplusCalUiState.update{currentState ->
+            val updatedList = currentState.expenseInputList + input
+            currentState.copy(expenseInputList = updatedList)
+        }
 
+        Log.d(TAG, "Expense Input List's size is: " + _budgetSurplusCalUiState.value.expenseInputList.size)
+    }
+
+    fun updateExpenseInput(input: String){
+        _budgetSurplusCalUiState.value = _budgetSurplusCalUiState.value.copy(
+            expenseInput = input
         )
     }
 
