@@ -54,7 +54,7 @@ fun ExpenseInputScreen(
             while (index < numberOfBills){
                 ExpenseInputLayout(
                     expenseInput = expenseInputUiState.expenseInputList[index].toString(),
-                    onExpenseInputChanged = { viewModel.updateExpenseInput(it) }
+                    onExpenseInputChanged = viewModel.
                 )
                 index++
             }
@@ -72,11 +72,11 @@ fun ExpenseInputScreen(
 @Composable
 fun ExpenseInputLayout(
     expenseInput: String,
-    onExpenseInputChanged: (String) -> Unit
+    onExpenseInputChanged: () -> Unit
 ){
     TextField(
         value = expenseInput,
-        onValueChange = onExpenseInputChanged,
+        onValueChange = {onExpenseInputChanged},
         label = {Text("Bill Amount",
             fontSize = 8.sp)}
     )
