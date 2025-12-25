@@ -23,3 +23,7 @@ Might need to switch to mutablestatelistof
 Dec 20, 2025
 The idea to handle expenseInput is to have updateExpenseInput function to manage the state in the expense input TextField().
 When all the expenses are input, then the submit button will take all the state, add them to expenseInputList or calculate directly. This has to be explore more to fully develope.
+Dec 24, 2025
+Created ExpenseInputList-Add to start working on making changes in the data class.
+val expenseInputList : List<String> = emptyList() and val expenseInput : String = "0.0" were remove
+Related functions were removed as well
