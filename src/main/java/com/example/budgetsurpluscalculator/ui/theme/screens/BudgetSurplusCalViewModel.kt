@@ -72,7 +72,7 @@ class BudgetSurplusCalViewModel : ViewModel(){
 
     fun updateExpenseInput(input : String) {
         _budgetSurplusCalUiState.value = _budgetSurplusCalUiState.value.copy(
-
+            expenseInput = input
         )
     }
 
