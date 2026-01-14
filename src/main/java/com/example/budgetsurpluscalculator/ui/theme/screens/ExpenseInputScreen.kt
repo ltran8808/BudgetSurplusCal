@@ -5,9 +5,16 @@ import android.util.Log
 import android.widget.Button
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -24,54 +31,54 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlin.math.log
+import kotlin.time.Duration.Companion.milliseconds
 
 @Composable
 fun ExpenseInputScreen(
-    modifier: Modifier = Modifier,
-    viewModel: BudgetSurplusCalViewModel = viewModel()
-){
+    viewModel: BudgetSurplusCalViewModel = viewModel(),
+) {
 
-    val expenseInputUiState by viewModel.budgetSurplusCalUiState.collectAsStateWithLifecycle()
+//    val expenseInputUiState by viewModel.budgetSurplusCalUiState.collectAsStateWithLifecycle()
+
+    val expenseInputList by viewModel.expenseItemState.collectAsStateWithLifecycle()
 
     val TAG = "ExpenseInputScreen"
-    Log.d(TAG, expenseInputUiState.monthlyNumberOfBills)
+    Log.d(TAG, "ExpenseInputScreen is initialized")
 
-    Column(
-        modifier = modifier
-        .padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ){
-        val numberOfBills = expenseInputUiState.monthlyNumberOfBills.toInt()
-        var index = 0
-
-        Column(
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ){
+
 //            Log.d(TAG, numberOfBills.toString())
 
-            while (index < numberOfBills){
-                ExpenseInputLayout(
-                    expenseInput = expenseInputUiState.expenseInput,
-                    onExpenseInputChanged = {viewModel.updateExpenseInput(it)}
-                )
-                index++
+                items(expenseInputList) {expenseInput ->
+
+                    ExpenseInputLayout(
+                        expenseInput = expenseInput,
+                        onExpenseInputChanged = {}
+                    )
+
+                }
+            item{
+                Button(onClick = {}) {
+                    Text("Submit")
+                }
             }
 
-
         }
 
-        Button(onClick = {}) {
-            Text("Submit")
-        }
+
+
     }
 
-}
+
+
 
 @Composable
 fun ExpenseInputLayout(
-    expenseInput: String,
+    expenseInput: String = "0.0",
     onExpenseInputChanged: (String) -> Unit
 ){
     TextField(

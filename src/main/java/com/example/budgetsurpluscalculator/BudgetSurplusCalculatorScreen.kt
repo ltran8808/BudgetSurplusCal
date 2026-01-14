@@ -59,7 +59,6 @@ fun BudgetSurplusCalculatorApp(
             startDestination= BudgetSurplusCalculatorScreens.Start.name,
             modifier = Modifier
                 .fillMaxSize()
-                .verticalScroll(rememberScrollState())
                 .padding(innerPadding)
         ){
             composable(route = BudgetSurplusCalculatorScreens.Start.name){
@@ -68,7 +67,8 @@ fun BudgetSurplusCalculatorApp(
                     onMonthlyNumberOfBillsChanged = {viewModel.updateMonthlyNumberOfBills(it)},
                     onSubmitButtonClicked = {
                         navController.navigate(BudgetSurplusCalculatorScreens.ExpenseInput.name)
-                                            viewModel.createExpenseList()},
+                        viewModel.createExpenseList()
+                                            },
                 )
             }
 

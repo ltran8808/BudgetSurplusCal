@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.collection.MutableDoubleList
 import androidx.collection.mutableDoubleListOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -20,10 +21,18 @@ data class BudgetSurplusCalUiState(
     val monthlyIncome: String = "0.0",
     val savingGoal: String = "0.0",
     val monthlyNumberOfBills: String = "0",
-    val expenseInputList : List<String> = emptyList(),
-    val expenseInput : String = "0.0"
+//    val expenseInputList : List<String> = emptyList(),
+//    val expenseInput : String = "0.0"
 )
 
+data class ExpenseListItem(
+    val id: Int,
+    val expenseInput: String
+)
+//
+//data class ExpenseInputScreenState(
+//    val items: List<ExpenseItemState> = emptyList()
+//)
 
 class BudgetSurplusCalViewModel : ViewModel(){
 
@@ -31,11 +40,10 @@ class BudgetSurplusCalViewModel : ViewModel(){
 
 
     private val _budgetSurplusCalUiState = MutableStateFlow(BudgetSurplusCalUiState())
-    val budgetSurplusCalUiState: StateFlow<BudgetSurplusCalUiState> = _budgetSurplusCalUiState
+    val budgetSurplusCalUiState: StateFlow<BudgetSurplusCalUiState> = _budgetSurplusCalUiState.asStateFlow()
 
-
-
-
+    private val _expenseItemState = MutableStateFlow<List<String>>(emptyList())
+    val expenseItemState: StateFlow<List<String>> = _expenseItemState.asStateFlow()
 
 
 
@@ -60,30 +68,27 @@ class BudgetSurplusCalViewModel : ViewModel(){
         Log.d(TAG,"Monthly number of bills is: " + budgetSurplusCalUiState.value.monthlyNumberOfBills)
     }
 
-
-
-
     fun createExpenseList(){
-        _budgetSurplusCalUiState.value = _budgetSurplusCalUiState.value.copy(
-            expenseInputList = MutableList(_budgetSurplusCalUiState.value.monthlyNumberOfBills.toInt()){_budgetSurplusCalUiState.value.expenseInput}
-        )
-        Log.d(TAG, "Expense Input List's size is: " + _budgetSurplusCalUiState.value.expenseInputList.size)
-    }
-
-    fun updateExpenseInputList( input : String) {
-        _budgetSurplusCalUiState.update{currentState ->
-            val updatedList = currentState.expenseInputList + input
-            currentState.copy(expenseInputList = updatedList)
+        var x = 0
+        while (x < _budgetSurplusCalUiState.value.monthlyNumberOfBills.toInt()){
+            _expenseItemState.value = _expenseItemState.value + "2.0"
+            x++
         }
 
-        Log.d(TAG, "Expense Input List's size is: " + _budgetSurplusCalUiState.value.expenseInputList.size)
+        Log.d(TAG, "Expense Input List's size is: " + _expenseItemState.value.size)
     }
 
-    fun updateExpenseInput(input: String){
-        _budgetSurplusCalUiState.value = _budgetSurplusCalUiState.value.copy(
-            expenseInput = input
-        )
+    fun updateExpenseInputList( billBalance:String) {
+        _expenseItemState.value = _expenseItemState.value + billBalance
+
+//        Log.d(TAG, "Expense Input List's size is: " + _budgetSurplusCalUiState.value.expenseInputList.size)
     }
+
+//    fun updateExpenseInput(input: String){
+//        _budgetSurplusCalUiState.value = _budgetSurplusCalUiState.value.copy(
+//            expenseInput = input
+//        )
+//    }
 
 
     fun reset(){
