@@ -40,10 +40,11 @@ fun ExpenseInputScreen(
 
 //    val expenseInputUiState by viewModel.budgetSurplusCalUiState.collectAsStateWithLifecycle()
 
-    val expenseInputList by viewModel.expenseItemState.collectAsStateWithLifecycle()
+    val expenseInputList by viewModel.expenseList.collectAsStateWithLifecycle()
 
     val TAG = "ExpenseInputScreen"
     Log.d(TAG, "ExpenseInputScreen is initialized")
+    var index = 0
 
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
@@ -53,13 +54,13 @@ fun ExpenseInputScreen(
 
 //            Log.d(TAG, numberOfBills.toString())
 
-                items(expenseInputList) {expenseInput ->
+                items(expenseInputList, key = {it.id}) { expenseInput ->
 
                     ExpenseInputLayout(
                         expenseInput = expenseInput,
-                        onExpenseInputChanged = {}
+                        onExpenseInputChanged = {viewModel.updateExpenseList(expenseInput.id, it)}
                     )
-
+                    index++
                 }
             item{
                 Button(onClick = {}) {
@@ -78,11 +79,11 @@ fun ExpenseInputScreen(
 
 @Composable
 fun ExpenseInputLayout(
-    expenseInput: String = "0.0",
+    expenseInput: ExpenseListItem,
     onExpenseInputChanged: (String) -> Unit
 ){
     TextField(
-        value = expenseInput,
+        value = expenseInput.expenseInput,
         onValueChange = onExpenseInputChanged,
         label = {Text("Bill Amount",
             fontSize = 8.sp)}

@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlin.apply
 
 data class BudgetSurplusCalUiState(
     val monthlyIncome: String = "0.0",
@@ -45,7 +46,10 @@ class BudgetSurplusCalViewModel : ViewModel(){
     private val _expenseItemState = MutableStateFlow<List<String>>(emptyList())
     val expenseItemState: StateFlow<List<String>> = _expenseItemState.asStateFlow()
 
+    private val _expenseList = MutableStateFlow(emptyList<ExpenseListItem>())
+    val expenseList: StateFlow<List<ExpenseListItem>> = _expenseList.asStateFlow()
 
+    var x = 0
 
     fun updateMonthlyIncome(input:String){
 //        monthlyIncome = input
@@ -69,20 +73,39 @@ class BudgetSurplusCalViewModel : ViewModel(){
     }
 
     fun createExpenseList(){
-        var x = 0
+
+
         while (x < _budgetSurplusCalUiState.value.monthlyNumberOfBills.toInt()){
-            _expenseItemState.value = _expenseItemState.value + "2.0"
+//            _expenseItemState.value = _expenseItemState.value + "2.0"
+            val expenseListItem : MutableList<ExpenseListItem> = mutableStateListOf(ExpenseListItem(x,"0.0"))
+            _expenseList.value = _expenseList.value + expenseListItem
             x++
         }
 
-        Log.d(TAG, "Expense Input List's size is: " + _expenseItemState.value.size)
+        Log.d(TAG, "Expense Input List's size is: " + _expenseList.value.size)
     }
 
-    fun updateExpenseInputList( billBalance:String) {
-        _expenseItemState.value = _expenseItemState.value + billBalance
+    fun updateExpenseList( expenseItemId: Int, billBalance:String) {
+        Log.d(TAG, "TextField "+ expenseItemId + "is being edited")
 
-//        Log.d(TAG, "Expense Input List's size is: " + _budgetSurplusCalUiState.value.expenseInputList.size)
-    }
+
+        _expenseList.update { currentList ->
+            currentList.map{item ->
+                if (item.id == expenseItemId){
+                    item.copy(expenseInput = billBalance)
+                } else {
+                    item
+                }
+            }
+        }
+
+//        _expenseList.value = _expenseList.value.toMutableList().apply { this[expenseItemId] = billBalance }
+        //        Log.d(TAG, "Expense Input List's size is: " + _budgetSurplusCalUiState.value.expenseInputList.size)
+        }
+
+
+
+
 
 //    fun updateExpenseInput(input: String){
 //        _budgetSurplusCalUiState.value = _budgetSurplusCalUiState.value.copy(
