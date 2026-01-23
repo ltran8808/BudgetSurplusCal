@@ -27,3 +27,6 @@ Dec 24, 2025
 Created ExpenseInputList-Add to start working on making changes in the data class.
 val expenseInputList : List<String> = emptyList() and val expenseInput : String = "0.0" were remove
 Related functions were removed as well
+January 22, 2026
+Using "mutable list elements with stateflow in jetpack compose" in Google Search, I was able to make my Bill Amount
+TextField in the ExpenseInputScreen to take input for the ExpenseInputList.
