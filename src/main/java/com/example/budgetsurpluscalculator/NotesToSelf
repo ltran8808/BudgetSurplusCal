@@ -30,3 +30,5 @@ Related functions were removed as well
 January 22, 2026
 Using "mutable list elements with stateflow in jetpack compose" in Google Search, I was able to make my Bill Amount
 TextField in the ExpenseInputScreen to take input for the ExpenseInputList.
+January 28, 2026
+Was able to get sum of input expenses and calculate monthly surplus in BudgetSurplusCalViewModel.calculateMonthlySurplus()

@@ -63,7 +63,7 @@ fun ExpenseInputScreen(
                     index++
                 }
             item{
-                Button(onClick = {}) {
+                Button(onClick = {viewModel.calculateMonthlySurplus()}) {
                     Text("Submit")
                 }
             }
