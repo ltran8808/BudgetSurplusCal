@@ -1,6 +1,7 @@
 package com.example.budgetsurpluscalculator.ui.theme.screens
 
 import android.util.Log
+import android.widget.Toast
 import androidx.collection.MutableDoubleList
 import androidx.collection.mutableDoubleListOf
 import androidx.compose.runtime.collectAsState
@@ -28,8 +29,8 @@ data class BudgetSurplusCalUiState(
     val monthlyIncome: String = "0.0",
     val savingGoal: String = "0.0",
     val monthlyNumberOfBills: String = "0",
-//    val expenseInputList : List<String> = emptyList(),
-//    val expenseInput : String = "0.0"
+    val monthlySurplus: String = "0.0",
+    val savingGoalResult: String = "0.0"
 )
 
 data class ExpenseListItem(
@@ -137,9 +138,16 @@ class BudgetSurplusCalViewModel : ViewModel(){
 
         Log.d(TAG,"Total monthly expense is: ${monthlyExpenseSum.sumOf{it}}")
 
-        val monthlySurplus = _budgetSurplusCalUiState.value.monthlyIncome.toDouble() - monthlyExpenseSum.sumOf{it}
+        val doubleMonthlySurplus = _budgetSurplusCalUiState.value.monthlyIncome.toDouble() - monthlyExpenseSum.sumOf{it}
 
-        Log.d(TAG, "Monthly Surplus is: $monthlySurplus")
+        _budgetSurplusCalUiState.value = _budgetSurplusCalUiState.value.copy(monthlySurplus = doubleMonthlySurplus.toString() )
+
+        Log.d(TAG, "Monthly Surplus is: ${_budgetSurplusCalUiState.value.monthlySurplus}")
+
+        val doubleSavingGoalResult = doubleMonthlySurplus - _budgetSurplusCalUiState.value.savingGoal.toDouble()
+
+        _budgetSurplusCalUiState.value = _budgetSurplusCalUiState.value.copy(savingGoalResult = doubleSavingGoalResult.toString())
+
     }
 
 }

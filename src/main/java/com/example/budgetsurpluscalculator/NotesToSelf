@@ -32,3 +32,6 @@ Using "mutable list elements with stateflow in jetpack compose" in Google Search
 TextField in the ExpenseInputScreen to take input for the ExpenseInputList.
 January 28, 2026
 Was able to get sum of input expenses and calculate monthly surplus in BudgetSurplusCalViewModel.calculateMonthlySurplus()
+January 31, 2026
+Created OutlinedCard to display surplus result and saving goal result in SurplusResultScreen
+Need to double check to make sure the math is right

@@ -28,6 +28,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.budgetsurpluscalculator.ui.theme.screens.BudgetSurplusCalViewModel
 import com.example.budgetsurpluscalculator.ui.theme.screens.ExpenseInputScreen
 import com.example.budgetsurpluscalculator.ui.theme.screens.InputBasicBudgetInfoScreen
+import com.example.budgetsurpluscalculator.ui.theme.screens.SurplusResultScreen
 
 /*
 THIS IS WHERE THE SCREENS ARE DISPLAYED WITH NAVIGATION (HOST, CONTROLLER AND ROUTE)
@@ -35,7 +36,8 @@ THIS IS WHERE THE SCREENS ARE DISPLAYED WITH NAVIGATION (HOST, CONTROLLER AND RO
 
 enum class BudgetSurplusCalculatorScreens(){
     Start,
-    ExpenseInput
+    ExpenseInput,
+    SurplusResultScreen
 }
 
 
@@ -72,11 +74,19 @@ fun BudgetSurplusCalculatorApp(
                 )
             }
 
-          composable(route = BudgetSurplusCalculatorScreens.ExpenseInput.name){
-              ExpenseInputScreen(
-                  viewModel = viewModel,
+            composable(route = BudgetSurplusCalculatorScreens.ExpenseInput.name){
+                ExpenseInputScreen(
+                    viewModel = viewModel,
+                    onSubmitButtonClicked = {
+                        navController.navigate(BudgetSurplusCalculatorScreens.SurplusResultScreen.name)
+                        viewModel.calculateMonthlySurplus()
+                    }
               )
-          }
+            }
+
+            composable(route = BudgetSurplusCalculatorScreens.SurplusResultScreen.name) {
+                SurplusResultScreen(viewModel = viewModel)
+            }
         }
 
     }
