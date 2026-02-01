@@ -51,8 +51,8 @@ fun ExpenseInputScreen(
     val TAG = "ExpenseInputScreen"
     Log.d(TAG, "ExpenseInputScreen is initialized")
 
-    val context = LocalContext.current
-    val monthlySurplus = budgetSurplusCalUiState.monthlySurplus
+//    val context = LocalContext.current
+//    val monthlySurplus = budgetSurplusCalUiState.monthlySurplus
 
         LazyColumn(
             modifier = Modifier.fillMaxSize(),

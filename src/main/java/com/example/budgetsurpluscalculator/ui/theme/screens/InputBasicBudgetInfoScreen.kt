@@ -97,8 +97,8 @@ fun InputBasicBudgetInfoScreen(
             horizontalArrangement = Arrangement.SpaceEvenly
         )
         {
-            Button(onClick = {viewModel.reset()}) {
-                Text("Reset")
+            Button(onClick = {viewModel.resetAll()}) {
+                Text("Reset All")
             }
 
             Spacer(modifier = Modifier

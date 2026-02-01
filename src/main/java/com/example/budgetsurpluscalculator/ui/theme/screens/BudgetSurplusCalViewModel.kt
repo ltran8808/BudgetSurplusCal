@@ -30,7 +30,8 @@ data class BudgetSurplusCalUiState(
     val savingGoal: String = "0.0",
     val monthlyNumberOfBills: String = "0",
     val monthlySurplus: String = "0.0",
-    val savingGoalResult: String = "0.0"
+    val savingGoalResult: String = "0.0",
+    val monthlyTotalExpense: String = "0.0"
 )
 
 data class ExpenseListItem(
@@ -121,7 +122,7 @@ class BudgetSurplusCalViewModel : ViewModel(){
 //    }
 
 
-    fun reset(){
+    fun resetAll(){
 
     }
 
@@ -147,6 +148,8 @@ class BudgetSurplusCalViewModel : ViewModel(){
         val doubleSavingGoalResult = doubleMonthlySurplus - _budgetSurplusCalUiState.value.savingGoal.toDouble()
 
         _budgetSurplusCalUiState.value = _budgetSurplusCalUiState.value.copy(savingGoalResult = doubleSavingGoalResult.toString())
+
+        _budgetSurplusCalUiState.value = _budgetSurplusCalUiState.value.copy(monthlyTotalExpense = monthlyExpenseSum.sumOf { it }.toString())
 
     }
 

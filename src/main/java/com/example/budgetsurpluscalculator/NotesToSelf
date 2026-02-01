@@ -35,3 +35,6 @@ Was able to get sum of input expenses and calculate monthly surplus in BudgetSur
 January 31, 2026
 Created OutlinedCard to display surplus result and saving goal result in SurplusResultScreen
 Need to double check to make sure the math is right
+January 31,2026
+SurplusResultScreen with all the cards for displaying results was done.
+Next step is to clean up and update resetAll button to bring reset all the properties to their default value.
