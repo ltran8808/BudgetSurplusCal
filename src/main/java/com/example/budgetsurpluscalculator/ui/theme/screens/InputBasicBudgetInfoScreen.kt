@@ -34,6 +34,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 fun InputBasicBudgetInfoScreen(
     onMonthlyNumberOfBillsChanged : (String) -> Unit,
     onSubmitButtonClicked : () -> Unit,
+    onResetAllButtonClick: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel : BudgetSurplusCalViewModel = viewModel()
 ){
@@ -97,7 +98,11 @@ fun InputBasicBudgetInfoScreen(
             horizontalArrangement = Arrangement.SpaceEvenly
         )
         {
-            Button(onClick = {viewModel.resetAll()}) {
+            Button(onClick = {
+                viewModel.resetAll()
+                onResetAllButtonClick()
+            }
+            ) {
                 Text("Reset All")
             }
 

@@ -27,7 +27,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun SurplusResultScreen(
-    viewModel: BudgetSurplusCalViewModel = viewModel()
+    viewModel: BudgetSurplusCalViewModel = viewModel(),
+    onResetAllButtonClicked: () -> Unit
 ){
 
     val budgetSurplusCalUiState = viewModel.budgetSurplusCalUiState.collectAsStateWithLifecycle()
@@ -54,7 +55,10 @@ fun SurplusResultScreen(
 
         SurplusOutlinedCard("Your monthly total expense is: ",totalMonthlyExpense )
 
-        Button (onClick = {}){
+        Button (onClick = {
+            viewModel.resetAll()
+            onResetAllButtonClicked()
+        }){
             Text("Reset All")
         }
 

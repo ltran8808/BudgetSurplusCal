@@ -23,15 +23,17 @@ import kotlinx.coroutines.flow.forEach
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.math.BigDecimal
+import kotlin.String
 import kotlin.apply
 
 data class BudgetSurplusCalUiState(
-    val monthlyIncome: String = "0.0",
-    val savingGoal: String = "0.0",
-    val monthlyNumberOfBills: String = "0",
-    val monthlySurplus: String = "0.0",
-    val savingGoalResult: String = "0.0",
-    val monthlyTotalExpense: String = "0.0"
+    val monthlyIncome: String = "",
+    val savingGoal: String = "",
+    val monthlyNumberOfBills: String = "",
+    val monthlySurplus: String = "",
+    val savingGoalResult: String = "",
+    val monthlyTotalExpense: String = ""
 )
 
 data class ExpenseListItem(
@@ -85,7 +87,7 @@ class BudgetSurplusCalViewModel : ViewModel(){
 
         while (x < _budgetSurplusCalUiState.value.monthlyNumberOfBills.toInt()){
 //            _expenseItemState.value = _expenseItemState.value + "2.0"
-            val expenseListItem : MutableList<ExpenseListItem> = mutableStateListOf(ExpenseListItem(x,"0.0"))
+            val expenseListItem : MutableList<ExpenseListItem> = mutableStateListOf(ExpenseListItem(x,""))
             _expenseList.value = _expenseList.value + expenseListItem
             x++
         }
@@ -123,7 +125,14 @@ class BudgetSurplusCalViewModel : ViewModel(){
 
 
     fun resetAll(){
-
+        _budgetSurplusCalUiState.value = _budgetSurplusCalUiState.value.copy(
+            monthlyIncome = "",
+            savingGoal = "",
+            monthlyNumberOfBills = "",
+            monthlySurplus = "",
+            savingGoalResult = "",
+            monthlyTotalExpense = ""
+        )
     }
 
     /*When the below function is called,ExpenseInputScreen composable function must be called and
@@ -141,15 +150,15 @@ class BudgetSurplusCalViewModel : ViewModel(){
 
         val doubleMonthlySurplus = _budgetSurplusCalUiState.value.monthlyIncome.toDouble() - monthlyExpenseSum.sumOf{it}
 
-        _budgetSurplusCalUiState.value = _budgetSurplusCalUiState.value.copy(monthlySurplus = doubleMonthlySurplus.toString() )
+        _budgetSurplusCalUiState.value = _budgetSurplusCalUiState.value.copy(monthlySurplus = ("%.2f".format(doubleMonthlySurplus)))
 
         Log.d(TAG, "Monthly Surplus is: ${_budgetSurplusCalUiState.value.monthlySurplus}")
 
         val doubleSavingGoalResult = doubleMonthlySurplus - _budgetSurplusCalUiState.value.savingGoal.toDouble()
 
-        _budgetSurplusCalUiState.value = _budgetSurplusCalUiState.value.copy(savingGoalResult = doubleSavingGoalResult.toString())
+        _budgetSurplusCalUiState.value = _budgetSurplusCalUiState.value.copy(savingGoalResult = "%.2f".format(doubleSavingGoalResult))
 
-        _budgetSurplusCalUiState.value = _budgetSurplusCalUiState.value.copy(monthlyTotalExpense = monthlyExpenseSum.sumOf { it }.toString())
+        _budgetSurplusCalUiState.value = _budgetSurplusCalUiState.value.copy(monthlyTotalExpense = "%.2f".format(monthlyExpenseSum.sumOf { it }))
 
     }
 

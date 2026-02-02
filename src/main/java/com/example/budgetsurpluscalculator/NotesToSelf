@@ -38,3 +38,6 @@ Need to double check to make sure the math is right
 January 31,2026
 SurplusResultScreen with all the cards for displaying results was done.
 Next step is to clean up and update resetAll button to bring reset all the properties to their default value.
+February 1, 2026
+Updated resetAll() to set everything back to blank and bring everything back to the start when users hit Reset All button.
+Added format to make sure outputs don't have "extra" number due to floating-point precision limitations.

@@ -71,6 +71,13 @@ fun BudgetSurplusCalculatorApp(
                         navController.navigate(BudgetSurplusCalculatorScreens.ExpenseInput.name)
                         viewModel.createExpenseList()
                                             },
+                    onResetAllButtonClick = {
+                        navController.navigate(BudgetSurplusCalculatorScreens.Start.name){
+                            popUpTo(navController.graph.startDestinationId){
+                                inclusive = true
+                            }
+                        }
+                    }
                 )
             }
 
@@ -85,7 +92,17 @@ fun BudgetSurplusCalculatorApp(
             }
 
             composable(route = BudgetSurplusCalculatorScreens.SurplusResultScreen.name) {
-                SurplusResultScreen(viewModel = viewModel)
+                SurplusResultScreen(
+                    viewModel = viewModel,
+                    onResetAllButtonClicked = {
+                        navController.navigate(BudgetSurplusCalculatorScreens.Start.name) {
+                            popUpTo(navController.graph.startDestinationId) {
+                                inclusive = true
+                            }
+                        }
+                    }
+
+                    )
             }
         }
 
