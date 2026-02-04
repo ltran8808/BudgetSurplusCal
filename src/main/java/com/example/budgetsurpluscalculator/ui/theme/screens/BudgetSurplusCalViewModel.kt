@@ -53,8 +53,8 @@ class BudgetSurplusCalViewModel : ViewModel(){
     private val _budgetSurplusCalUiState = MutableStateFlow(BudgetSurplusCalUiState())
     val budgetSurplusCalUiState: StateFlow<BudgetSurplusCalUiState> = _budgetSurplusCalUiState.asStateFlow()
 
-    private val _expenseItemState = MutableStateFlow<List<String>>(emptyList())
-    val expenseItemState: StateFlow<List<String>> = _expenseItemState.asStateFlow()
+//    private val _expenseItemState = MutableStateFlow<List<String>>(emptyList())
+//    val expenseItemState: StateFlow<List<String>> = _expenseItemState.asStateFlow()
 
     private val _expenseList = MutableStateFlow(emptyList<ExpenseListItem>())
     val expenseList: StateFlow<List<ExpenseListItem>> = _expenseList.asStateFlow()
