@@ -43,5 +43,5 @@ Updated resetAll() to set everything back to blank and bring everything back to 
 Added format to make sure outputs don't have "extra" number due to floating-point precision limitations.
 February 3, 2026
 Almost finished with the Tip Calculator feature.
-Still need to read more about passing parameter into a lamdda while the lambda expression is a property value.
+Still need to read more about passing parameter into a lambda while the lambda expression is a property value.
 Then read navigationbar to allow users switch between screens to access different features (Tip Calculator, Budget Surplus Calculation, Saving Estimate Calculator)
