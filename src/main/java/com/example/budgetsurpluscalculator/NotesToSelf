@@ -44,4 +44,8 @@ Added format to make sure outputs don't have "extra" number due to floating-poin
 February 3, 2026
 Almost finished with the Tip Calculator feature.
 Still need to read more about passing parameter into a lambda while the lambda expression is a property value.
-Then read navigationbar to allow users switch between screens to access different features (Tip Calculator, Budget Surplus Calculation, Saving Estimate Calculator)
+Then read navigationbar to allow users switch between screens to access different features (Tip Calculator, Budget Surplus Calculation, Saving Estimate Calculator).
+Feb 6, 2026
+Added Navigation Bar, https://developer.android.com/develop/ui/compose/components/navigation-bar
+App is crashing right now. Likely because of viewModel and tipCalScreenViewModel. They are both viewModel().
+Searched result said it should be ok. Need to look further into this.
