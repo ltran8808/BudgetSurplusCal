@@ -49,3 +49,5 @@ Feb 6, 2026
 Added Navigation Bar, https://developer.android.com/develop/ui/compose/components/navigation-bar
 App is crashing right now. Likely because of viewModel and tipCalScreenViewModel. They are both viewModel().
 Searched result said it should be ok. Need to look further into this.
+Feb 8, 2026
+Finished all three features (Tip Calculator, Saving Estimate Calculator and Surplus Calculator) of the app.

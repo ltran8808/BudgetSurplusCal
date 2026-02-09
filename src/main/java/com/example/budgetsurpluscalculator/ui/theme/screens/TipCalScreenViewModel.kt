@@ -1,5 +1,6 @@
 package com.example.budgetsurpluscalculator.ui.theme.screens
 
+import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -12,7 +13,7 @@ data class TipCalScreenUiState(
     val totalWithTip: String = " "
 )
 
-class TipCalScreenViewModel {
+class TipCalScreenViewModel : ViewModel() {
     private val _tipCalScreenUiState = MutableStateFlow(TipCalScreenUiState())
     val tipCalScreenUiState: StateFlow<TipCalScreenUiState> = _tipCalScreenUiState.asStateFlow()
 

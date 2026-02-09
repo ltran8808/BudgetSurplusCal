@@ -2,6 +2,7 @@ package com.example.budgetsurpluscalculator.ui.theme.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
@@ -46,8 +47,11 @@ fun TipCalScreen(viewModel: TipCalScreenViewModel = viewModel()){
 //        )
 
         InputField(billSubtotal, onValueChanged = onBillSubtotalValueChanged, "Please enter your bill Subtotal." )
+        Spacer(modifier = Modifier
+            .padding(8.dp))
         InputField(tipPercent,onTipPercentValueChanged,"Please enter how much you'd like to tip in percentage.")
-
+        Spacer(modifier = Modifier
+            .padding(8.dp))
         Button(onClick = {
             viewModel.calculateTip()
             viewModel.calculateTotalWithTip()
@@ -62,11 +66,11 @@ fun TipCalScreen(viewModel: TipCalScreenViewModel = viewModel()){
         }
 
         Text(
-            text = tipCalScreenState.tipAmount
+            text = "Tip Amount: ${tipCalScreenState.tipAmount}"
         )
 
         Text(
-            text = tipCalScreenState.totalWithTip
+            text = "Total: ${tipCalScreenState.totalWithTip}"
         )
     }
 }
