@@ -121,17 +121,3 @@ fun InputBasicBudgetInfoScreen(
 
 }
 
-@Preview
-@Composable
-fun InputBasicBudgetInfoPreview(){
-//    uiState: BudgetSurplusCalUiState = BudgetSurplusCalUiState
-//
-//        InputBasicBudgetInfoScreen(
-//            uiState = uiState,
-//            modifier = Modifier
-//                .fillMaxSize()
-//                .padding(16.dp),
-//            onSubmitButtonClicked = {}
-//        )
-
-}

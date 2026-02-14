@@ -40,10 +40,7 @@ data class ExpenseListItem(
     val id: Int,
     val expenseInput: String
 )
-//
-//data class ExpenseInputScreenState(
-//    val items: List<ExpenseItemState> = emptyList()
-//)
+
 
 class BudgetSurplusCalViewModel : ViewModel(){
 
@@ -53,8 +50,7 @@ class BudgetSurplusCalViewModel : ViewModel(){
     private val _budgetSurplusCalUiState = MutableStateFlow(BudgetSurplusCalUiState())
     val budgetSurplusCalUiState: StateFlow<BudgetSurplusCalUiState> = _budgetSurplusCalUiState.asStateFlow()
 
-//    private val _expenseItemState = MutableStateFlow<List<String>>(emptyList())
-//    val expenseItemState: StateFlow<List<String>> = _expenseItemState.asStateFlow()
+
 
     private val _expenseList = MutableStateFlow(emptyList<ExpenseListItem>())
     val expenseList: StateFlow<List<ExpenseListItem>> = _expenseList.asStateFlow()
@@ -62,18 +58,17 @@ class BudgetSurplusCalViewModel : ViewModel(){
     var x = 0
 
     fun updateMonthlyIncome(input:String){
-//        monthlyIncome = input
+
         _budgetSurplusCalUiState.value = _budgetSurplusCalUiState.value.copy(monthlyIncome = input)
     }
 
     fun updateSavingGoal(input:String) {
-//        monthlySavingGoal = input
+
         _budgetSurplusCalUiState.value = _budgetSurplusCalUiState.value.copy(savingGoal = input )
     }
 
     fun updateMonthlyNumberOfBills(input:String){
-//        monthlyNumberOfBills = input
-//        _budgetSurplusCalUiState.value.monthlyNumberOfBills = input
+
 
         _budgetSurplusCalUiState.value = _budgetSurplusCalUiState.value.copy(
             monthlyNumberOfBills = input
@@ -86,7 +81,7 @@ class BudgetSurplusCalViewModel : ViewModel(){
 
 
         while (x < _budgetSurplusCalUiState.value.monthlyNumberOfBills.toInt()){
-//            _expenseItemState.value = _expenseItemState.value + "2.0"
+
             val expenseListItem : MutableList<ExpenseListItem> = mutableStateListOf(ExpenseListItem(x,""))
             _expenseList.value = _expenseList.value + expenseListItem
             x++
@@ -109,19 +104,12 @@ class BudgetSurplusCalViewModel : ViewModel(){
             }
         }
 
-//        _expenseList.value = _expenseList.value.toMutableList().apply { this[expenseItemId] = billBalance }
-        //        Log.d(TAG, "Expense Input List's size is: " + _budgetSurplusCalUiState.value.expenseInputList.size)
-        }
+    }
 
 
 
 
 
-//    fun updateExpenseInput(input: String){
-//        _budgetSurplusCalUiState.value = _budgetSurplusCalUiState.value.copy(
-//            expenseInput = input
-//        )
-//    }
 
 
     fun resetAll(){
@@ -139,9 +127,7 @@ class BudgetSurplusCalViewModel : ViewModel(){
     hosted in NavHost. Then, an list must be created in order to keep the expenses that users are going to enter
     in the ExpenseInputScreen.
          */
-    fun submit(){
-//        createExpenseInputList()
-    }
+
 
     fun calculateMonthlySurplus(){
         val monthlyExpenseSum = _expenseList.value.map{it.expenseInput.toDouble()}

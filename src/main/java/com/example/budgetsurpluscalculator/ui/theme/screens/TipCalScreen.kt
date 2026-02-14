@@ -35,17 +35,6 @@ fun TipCalScreen(viewModel: TipCalScreenViewModel = viewModel()){
         val onTipPercentValueChanged = viewModel::updateTipPercent
 
 
-//        TextField(
-//            value = billSubtotal,
-//            onValueChange = {viewModel.updateBillSubtotal(it)},
-//            label = {Text(
-//                "Please enter your bill Subtotal.",
-//                fontSize = 8.sp
-//            )},
-//            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-//            singleLine = true
-//        )
-
         InputField(billSubtotal, onValueChanged = onBillSubtotalValueChanged, "Please enter your bill Subtotal." )
         Spacer(modifier = Modifier
             .padding(8.dp))

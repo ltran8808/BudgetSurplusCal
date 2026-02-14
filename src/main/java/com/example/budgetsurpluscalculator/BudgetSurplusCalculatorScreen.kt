@@ -74,15 +74,13 @@ enum class Destination(
 @Composable
 fun BudgetSurplusCalculatorApp(
     viewModel: BudgetSurplusCalViewModel = viewModel(),
-    tipCalScreenViewModel: TipCalScreenViewModel = viewModel(),
-    navController: NavHostController = rememberNavController(),
+
 ){
 
     val navController = rememberNavController()
     val startDestination = Destination.TIPCAL
     var selectedDestination by rememberSaveable{mutableStateOf(startDestination.ordinal)}
-    val tipCalViewModel : TipCalScreenViewModel = viewModel()
-    val budgetSurplusViewModel : BudgetSurplusCalViewModel = viewModel()
+
 
     Scaffold(
         bottomBar = {
@@ -160,7 +158,6 @@ fun BudgetSurplusCalculatorApp(
 
           composable(route = BudgetSurplusCalculatorScreens.TipCalScreen.name){
               TipCalScreen(
-//                  viewModel = tipCalScreenViewModel
               )
           }
 
@@ -172,99 +169,7 @@ fun BudgetSurplusCalculatorApp(
     }
 
 }
-//
-//@Composable
-//fun AppNavHost(
-//    viewModel: BudgetSurplusCalViewModel,
-//    tipCalScreenViewModel: TipCalScreenViewModel,
-//    estimateSavingScreen: EstimateSavingScreenViewModel,
-//    navController : NavHostController,
-//    startDestination : Destination,
-//    modifier: Modifier = Modifier
-//){
-//
-//    NavHost(
-//        navController,
-//        startDestination = startDestination.route,
-//
-//    ){
-//        Destination.entries.forEach{
-//            destination ->
-//            composable(destination.route) {
-//                when(destination){
-//                    Destination.TIPCAL -> TipCalScreen(viewModel = tipCalScreenViewModel)
-//                    Destination.ESTSAVCAL -> EstimateSavingScreen(viewModel = estimateSavingScreen)
-//                    Destination.SURPLUSCAL -> InputBasicBudgetInfoScreen(viewModel = viewModel,
-//                        onMonthlyNumberOfBillsChanged = {viewModel.updateMonthlyNumberOfBills(it)},
-//                        onSubmitButtonClicked = {
-//                            navController.navigate(BudgetSurplusCalculatorScreens.ExpenseInput.name)
-//                            viewModel.createExpenseList()
-//                        },
-//                        onResetAllButtonClick = {
-//                            navController.navigate(BudgetSurplusCalculatorScreens.Start.name){
-//                                popUpTo(navController.graph.startDestinationId){
-//                                    inclusive = true
-//                                }
-//                            }
-//                        })
-//                }
-//            }
-//        }
-//    }
-//}
 
-//@Composable
-//fun NavigationBarExample(
-//    modifier : Modifier = Modifier
-//                .fillMaxSize()
-//                .padding()
-//
-//){
-//    val navController = rememberNavController()
-//    val startDestination = Destination.TIPCAL
-//    var selectedDestination by rememberSaveable{mutableStateOf(startDestination.ordinal)}
-//    val tipCalViewModel : TipCalScreenViewModel = viewModel()
-//    val budgetSurplusViewModel : BudgetSurplusCalViewModel = viewModel()
-//
-//    Scaffold(
-//        modifier = modifier,
-//        bottomBar = {
-//            NavigationBar(
-//                windowInsets = NavigationBarDefaults.windowInsets
-//            ){
-//                Destination.entries.forEachIndexed { index, destination ->
-//                    NavigationBarItem(
-//                        selected = selectedDestination == index,
-//                        onClick = {
-//                            navController.navigate(route = destination.route)
-//                            selectedDestination = index
-//                        },
-//                        icon = {
-//                            Icon(
-//                                destination.icon,
-//                                contentDescription = destination.contentDescription
-//                            )
-//                        },
-//                        label = {Text(destination.label)}
-//                    )
-//                }
-//            }
-//        }
-//    ) {
-//        contentPadding ->
-//        AppNavHost(viewModel = budgetSurplusViewModel,
-//            tipCalScreenViewModel = tipCalViewModel,
-//            navController = navController,
-//            startDestination = startDestination,
-//            modifier = Modifier.padding(contentPadding))
-//    }
-//}
-
-//@Preview
-//@Composable
-//fun BudgetSurplusCalculatorScreen(){
-//    BudgetSurplusCalculatorApp()
-//}
 
 
 

@@ -43,16 +43,15 @@ fun ExpenseInputScreen(
     onSubmitButtonClicked: () -> Unit,
 ) {
 
-//    val expenseInputUiState by viewModel.budgetSurplusCalUiState.collectAsStateWithLifecycle()
+
 
     val expenseInputList by viewModel.expenseList.collectAsStateWithLifecycle()
-    val budgetSurplusCalUiState by viewModel.budgetSurplusCalUiState.collectAsStateWithLifecycle()
+
 
     val TAG = "ExpenseInputScreen"
     Log.d(TAG, "ExpenseInputScreen is initialized")
 
-//    val context = LocalContext.current
-//    val monthlySurplus = budgetSurplusCalUiState.monthlySurplus
+
 
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
@@ -60,7 +59,7 @@ fun ExpenseInputScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ){
 
-//            Log.d(TAG, numberOfBills.toString())
+
 
                 items(expenseInputList, key = {it.id}) { expenseInput ->
 
@@ -108,6 +107,5 @@ fun ExpenseInputLayout(
 @Preview
 @Composable
 fun ExpenseInputPreview(){
-//    ExpenseInputScreen(
-//    )
+
 }
