@@ -1,5 +1,6 @@
-package com.example.budgetsurpluscalculator.ui.theme.screens
+package com.ltdev.budgetsurpluscalculator.ui.theme.screens
 
+import android.text.TextUtils.isEmpty
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -35,15 +36,16 @@ class TipCalScreenViewModel : ViewModel() {
         val tipAmount = (_tipCalScreenUiState.value.billSubTotal.toDouble() * _tipCalScreenUiState.value.tipPercent.toDouble()) / 100
 
         _tipCalScreenUiState.value = _tipCalScreenUiState.value.copy(
-            tipAmount = tipAmount.toString()
+            tipAmount = ("%.2f".format(tipAmount))
         )
     }
 
     fun calculateTotalWithTip(){
+
         val totalWithTip = _tipCalScreenUiState.value.tipAmount.toDouble() + _tipCalScreenUiState.value.billSubTotal.toDouble()
 
         _tipCalScreenUiState.value = _tipCalScreenUiState.value.copy(
-            totalWithTip = totalWithTip.toString()
+            totalWithTip = ("%.2f".format(totalWithTip))
         )
 
     }

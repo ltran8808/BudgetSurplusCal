@@ -51,3 +51,9 @@ App is crashing right now. Likely because of viewModel and tipCalScreenViewModel
 Searched result said it should be ok. Need to look further into this.
 Feb 8, 2026
 Finished all three features (Tip Calculator, Saving Estimate Calculator and Surplus Calculator) of the app.
+Feb 14, 2026
+Created and added app icon
+Tested and the app icon appeared as expected on my phone
+March 4, 2026
+Fixed empty textfield bug
+Added code to format calculated tip to show 2 digit after decimal point

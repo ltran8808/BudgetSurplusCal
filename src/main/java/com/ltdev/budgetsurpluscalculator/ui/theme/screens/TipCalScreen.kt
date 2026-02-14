@@ -1,5 +1,6 @@
-package com.example.budgetsurpluscalculator.ui.theme.screens
+package com.ltdev.budgetsurpluscalculator.ui.theme.screens
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -9,10 +10,10 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ComposeCompilerApi
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -33,18 +34,8 @@ fun TipCalScreen(viewModel: TipCalScreenViewModel = viewModel()){
         val onBillSubtotalValueChanged = viewModel :: updateBillSubtotal
         val tipPercent = tipCalScreenState.tipPercent
         val onTipPercentValueChanged = viewModel::updateTipPercent
+        val context = LocalContext.current
 
-
-//        TextField(
-//            value = billSubtotal,
-//            onValueChange = {viewModel.updateBillSubtotal(it)},
-//            label = {Text(
-//                "Please enter your bill Subtotal.",
-//                fontSize = 8.sp
-//            )},
-//            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-//            singleLine = true
-//        )
 
         InputField(billSubtotal, onValueChanged = onBillSubtotalValueChanged, "Please enter your bill Subtotal." )
         Spacer(modifier = Modifier
@@ -53,8 +44,12 @@ fun TipCalScreen(viewModel: TipCalScreenViewModel = viewModel()){
         Spacer(modifier = Modifier
             .padding(8.dp))
         Button(onClick = {
-            viewModel.calculateTip()
-            viewModel.calculateTotalWithTip()
+            if (tipCalScreenState.billSubTotal.isBlank() || tipCalScreenState.tipPercent.isBlank() ){
+                Toast.makeText(context, "Please enter needed information in the above fields!", Toast.LENGTH_LONG).show()
+            } else {
+                viewModel.calculateTip()
+                viewModel.calculateTotalWithTip()
+            }
         }) {
             Text("OK")
         }

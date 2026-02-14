@@ -1,4 +1,4 @@
-package com.example.budgetsurpluscalculator
+package com.ltdev.budgetsurpluscalculator
 
 import org.junit.Test
 

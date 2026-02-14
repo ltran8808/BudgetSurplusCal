@@ -1,7 +1,5 @@
-package com.example.budgetsurpluscalculator.ui.theme.screens
+package com.ltdev.budgetsurpluscalculator.ui.theme.screens
 
-import androidx.compose.animation.expandIn
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
