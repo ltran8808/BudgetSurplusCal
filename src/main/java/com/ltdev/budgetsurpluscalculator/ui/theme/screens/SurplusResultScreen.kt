@@ -44,7 +44,7 @@ fun SurplusResultScreen(
         SurplusOutlinedCard("Your monthly surplus is: ", monthlySurplus)
 
         when {
-            savingGoalResult > 0 -> SurplusOutlinedCard("Congratulation! You have more than enough for your saving goal, and the extra amount is: ", savingGoalResult.toString())
+            savingGoalResult > 0 -> SurplusOutlinedCard("Congratulations! You have more than enough for your saving goal, and the extra amount is: ", savingGoalResult.toString())
             savingGoalResult < 0 -> SurplusOutlinedCard("I am sorry! You don't have enough to meet your saving goal. The amount you need to meet the saving goal is: ", positiveSavingGoalResult.toString())
             else -> SurplusOutlinedCard("Good job! Your surplus money is the exact amount you need for your saving goal.")
 
