@@ -57,3 +57,4 @@ Tested and the app icon appeared as expected on my phone
 March 4, 2026
 Fixed empty textfield bug
 Added code to format calculated tip to show 2 digit after decimal point
+Added AD_ID permission
