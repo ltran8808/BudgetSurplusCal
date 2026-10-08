@@ -1,0 +1,60 @@
+Nov 10, 2025
+Textfield continues showing default value when onValueChange is called. This seems to be because of the source of truth, for example budgetSurplusCalUiState.monthlyIncome. BudgetSurplusCalUiState has monthlyIncome with 0.0 by default.
+Nov 12, 2025
+Starter code was done.
+I uploaded the starter code into Github, https://github.com/ltran8808/BudgetSurplusCal.
+Next step is to write code for ExpenseInputScreen in ExpenseInputScreen.kt.
+Nov 15, 2025
+Created composables for expense inputs
+Next step is to find a solution to update elements of BudgetSurplusCalViewModel's expenseInputList.
+Nov 18, 2025
+Next step is to write Navigation code.
+Make sure the ExpenseInputList is intialize in order for ExpenseInputScreen to have a list to use for generating Textfield and expenseInput value
+Nov 21,2025
+https://developer.android.com/codelabs/basic-android-kotlin-compose-navigation#3
+https://developer.android.com/guide/navigation
+https://github.com/google-developer-training/basic-android-kotlin-compose-training-cupcake/blob/main/app/src/main/java/com/example/cupcake/CupcakeScreen.kt
+Created NavHost and other Navigation components
+Next step is to update onClick functions to navigate, call functions in BudgetSurplusCalViewMode and pass important arguments.
+Dec 16, 2025
+The code is now generating expense input Textfield per the amount of bills that users enter.
+Next step is to work on making the each expense input textfield individually updates the MustableList expenseInputList.
+Might need to switch to mutablestatelistof
+Dec 20, 2025
+The idea to handle expenseInput is to have updateExpenseInput function to manage the state in the expense input TextField().
+When all the expenses are input, then the submit button will take all the state, add them to expenseInputList or calculate directly. This has to be explore more to fully develope.
+Dec 24, 2025
+Created ExpenseInputList-Add to start working on making changes in the data class.
+val expenseInputList : List<String> = emptyList() and val expenseInput : String = "0.0" were remove
+Related functions were removed as well
+January 22, 2026
+Using "mutable list elements with stateflow in jetpack compose" in Google Search, I was able to make my Bill Amount
+TextField in the ExpenseInputScreen to take input for the ExpenseInputList.
+January 28, 2026
+Was able to get sum of input expenses and calculate monthly surplus in BudgetSurplusCalViewModel.calculateMonthlySurplus()
+January 31, 2026
+Created OutlinedCard to display surplus result and saving goal result in SurplusResultScreen
+Need to double check to make sure the math is right
+January 31,2026
+SurplusResultScreen with all the cards for displaying results was done.
+Next step is to clean up and update resetAll button to bring reset all the properties to their default value.
+February 1, 2026
+Updated resetAll() to set everything back to blank and bring everything back to the start when users hit Reset All button.
+Added format to make sure outputs don't have "extra" number due to floating-point precision limitations.
+February 3, 2026
+Almost finished with the Tip Calculator feature.
+Still need to read more about passing parameter into a lambda while the lambda expression is a property value.
+Then read navigationbar to allow users switch between screens to access different features (Tip Calculator, Budget Surplus Calculation, Saving Estimate Calculator).
+Feb 6, 2026
+Added Navigation Bar, https://developer.android.com/develop/ui/compose/components/navigation-bar
+App is crashing right now. Likely because of viewModel and tipCalScreenViewModel. They are both viewModel().
+Searched result said it should be ok. Need to look further into this.
+Feb 8, 2026
+Finished all three features (Tip Calculator, Saving Estimate Calculator and Surplus Calculator) of the app.
+Feb 14, 2026
+Created and added app icon
+Tested and the app icon appeared as expected on my phone
+March 4, 2026
+Fixed empty textfield bug
+Added code to format calculated tip to show 2 digit after decimal point
+Added AD_ID permission
